@@ -17,25 +17,8 @@ namespace TheatricalPlayersRefactoringKata
             foreach(var perf in invoice.Performances) 
             {
                 var play = plays[perf.PlayID];
-                var thisAmount = 0;
-                switch (play.Type) 
-                {
-                    case "tragedy":
-                        thisAmount = 40000;
-                        if (perf.Audience > 30) {
-                            thisAmount += 1000 * (perf.Audience - 30);
-                        }
-                        break;
-                    case "comedy":
-                        thisAmount = 30000;
-                        if (perf.Audience > 20) {
-                            thisAmount += 10000 + 500 * (perf.Audience - 20);
-                        }
-                        thisAmount += 300 * perf.Audience;
-                        break;
-                    default:
-                        throw new Exception("unknown type: " + play.Type);
-                }
+                var thisAmount = GetPerformaceCost(perf, plays);
+                
                 // add volume credits
                 volumeCredits += Math.Max(perf.Audience - 30, 0);
                 // add extra credit for every ten comedy attendees
@@ -53,6 +36,33 @@ namespace TheatricalPlayersRefactoringKata
         string GetInvoiceHeader(Invoice invoice)
         {
             return $"Statement for {invoice.Customer}\n";
+        }
+
+        int GetPerformaceCost(Performance performance, Dictionary<string, Play> plays)
+        {
+            var play = plays[performance.PlayID];
+            var thisAmount = 0;
+            switch (play.Type)
+            {
+                case "tragedy":
+                    thisAmount = 40000;
+                    if (performance.Audience > 30)
+                    {
+                        thisAmount += 1000 * (performance.Audience - 30);
+                    }
+                    break;
+                case "comedy":
+                    thisAmount = 30000;
+                    if (performance.Audience > 20)
+                    {
+                        thisAmount += 10000 + 500 * (performance.Audience - 20);
+                    }
+                    thisAmount += 300 * performance.Audience;
+                    break;
+                default:
+                    throw new Exception("unknown type: " + play.Type);
+            }
+            return thisAmount;
         }
 
         public string PrintAsHtml(Invoice invoice, Dictionary<string, Play> plays)
