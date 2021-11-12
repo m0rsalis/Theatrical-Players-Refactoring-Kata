@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text;
 
 namespace TheatricalPlayersRefactoringKata
 {
@@ -10,7 +11,7 @@ namespace TheatricalPlayersRefactoringKata
         {
             var totalAmount = 0;
             var volumeCredits = 0;
-            var result = string.Format("Statement for {0}\n", invoice.Customer);
+            var result = GetInvoiceHeader(invoice);
             CultureInfo cultureInfo = new CultureInfo("en-US");
 
             foreach(var perf in invoice.Performances) 
@@ -49,9 +50,17 @@ namespace TheatricalPlayersRefactoringKata
             return result;
         }
 
+        string GetInvoiceHeader(Invoice invoice)
+        {
+            return $"Statement for {invoice.Customer}\n";
+        }
+
         public string PrintAsHtml(Invoice invoice, Dictionary<string, Play> plays)
         {
-            return string.Empty;
+            var stringBuilder = new StringBuilder("<html>");
+            stringBuilder.AppendLine($"<h1>{GetInvoiceHeader(invoice)}</h1>");
+            stringBuilder.AppendLine("</html>");
+            return stringBuilder.ToString();
         }
     }
 }
