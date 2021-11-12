@@ -41,28 +41,30 @@ namespace TheatricalPlayersRefactoringKata
         int GetPerformaceCost(Performance performance, Dictionary<string, Play> plays)
         {
             var play = plays[performance.PlayID];
-            var thisAmount = 0;
+            int cost;
+
             switch (play.Type)
             {
                 case "tragedy":
-                    thisAmount = 40000;
+                    cost = 40000;
                     if (performance.Audience > 30)
                     {
-                        thisAmount += 1000 * (performance.Audience - 30);
+                        cost += 1000 * (performance.Audience - 30);
                     }
                     break;
                 case "comedy":
-                    thisAmount = 30000;
+                    cost = 30000;
                     if (performance.Audience > 20)
                     {
-                        thisAmount += 10000 + 500 * (performance.Audience - 20);
+                        cost += 10000 + 500 * (performance.Audience - 20);
                     }
-                    thisAmount += 300 * performance.Audience;
+                    cost += 300 * performance.Audience;
                     break;
                 default:
                     throw new Exception("unknown type: " + play.Type);
             }
-            return thisAmount;
+
+            return cost;
         }
 
         public string PrintAsHtml(Invoice invoice, Dictionary<string, Play> plays)
