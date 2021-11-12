@@ -51,14 +51,21 @@ namespace TheatricalPlayersRefactoringKata
                     cost = GetCostForTragedy(performance.Audience);
                     break;
                 case "comedy":
-                    cost = 30000;
-                    if (performance.Audience > 20) cost += 10000 + 500 * (performance.Audience - 20);
-                    cost += 300 * performance.Audience;
+                    cost = GetCostForComedy(performance.Audience);
                     break;
                 default:
                     throw new Exception("unknown type: " + play.Type);
             }
 
+            return cost;
+        }
+
+        private static int GetCostForComedy(int audience)
+        {
+            var cost = 30000;
+            if (audience > 20)
+                cost += 10000 + 500 * (audience - 20);
+            cost += 300 * audience;
             return cost;
         }
 
