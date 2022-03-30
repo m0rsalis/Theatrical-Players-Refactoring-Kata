@@ -29,7 +29,7 @@ Fork this repository by clicking on the fork button on the top of this page. Thi
 
 Add collaborators
 ----------------
-Go to your GitHub account, open the forked repository, click on the _Settings_ mentu item, click on the _Manage access_ and then click the _Invite a collaborator_ button. Add all the software craftsmen, who will collaborate on the Kata with you.
+Go to your GitHub account, open the forked repository, click on the _Settings_ menu item, click on the _Manage access_ and then click the _Invite a collaborator_ button. Add all the software craftsmen, who will collaborate on the Kata with you.
 ![image](https://user-images.githubusercontent.com/695210/116807745-1c384c00-ab35-11eb-923d-b11475181c06.png)
 
 Clone the repository
@@ -61,6 +61,9 @@ Get feedback on your Mob session
 * Milan Schwarz -> milan.schwarz@ysoft.com
 * Radim Göth -> radim.goeth@ysoft.com
 * Tomáš Líška -> tomas.liska@ysoft.com
+* Roman Mátl -> roman.matl@ysoft.com
+* Filip Koňařík -> filip.konarik@ysoft.com
+* Martin Kubala -> martin.kubala@ysoft.com
 
 Best practices
 ====================================
